@@ -18,23 +18,21 @@ const HALF_LIFE_PERIOD = 5730;
  *
  */
 export default function dateSample(sampleActivity) {
-  let k = 0.693 / HALF_LIFE_PERIOD;
-  const CORRECT_SYMBOLS = "0123456789.";
+    let k = 0.693 / HALF_LIFE_PERIOD;
+    const CORRECT_SYMBOLS = "0123456789.";
 
-  if (sampleActivity == undefined) return false;
-  if (typeof sampleActivity != "string") return false; // not a string
-  //if (Number(sampleActivity) == NaN) return false;
-  let flag = true;
-  for (let index = 0; index < sampleActivity.length; index++) {
-    if (CORRECT_SYMBOLS.indexOf(sampleActivity[index], 0) == -1) {
-      flag = false;
-      break;
+    if (sampleActivity == undefined) return false;
+    if (sampleActivity == Infinity) return false;
+    if (typeof sampleActivity != "string") return false; // not a string
+    if ((typeof Number(sampleActivity) != 'number') || (String(Number(sampleActivity)) != sampleActivity)) {
+        return false
     }
-  }
-  if (flag == false) return false;
+    let numSampleActivity = Number(sampleActivity);
+    if (numSampleActivity > MODERN_ACTIVITY || numSampleActivity <= 0) { return false };
 
-  if (Number(sampleActivity) > MODERN_ACTIVITY || Number(sampleActivity) < 0)
-    return false;
-
-  return Math.round(Math.log(MODERN_ACTIVITY / Number(sampleActivity)) / k);
+    // console.log(Math.log(MODERN_ACTIVITY / numSampleActivity) / k);
+    return Math.ceil(Math.log(MODERN_ACTIVITY / numSampleActivity) / k);
 }
+
+// console.log(dateSample('3.142'));
+// console.log(dateSample(Infinity));
