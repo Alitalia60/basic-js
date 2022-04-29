@@ -30,9 +30,5 @@ export default function dateSample(sampleActivity) {
     let numSampleActivity = Number(sampleActivity);
     if (numSampleActivity > MODERN_ACTIVITY || numSampleActivity <= 0) { return false };
 
-    // console.log(Math.log(MODERN_ACTIVITY / numSampleActivity) / k);
     return Math.ceil(Math.log(MODERN_ACTIVITY / numSampleActivity) / k);
 }
-
-// console.log(dateSample('3.142'));
-// console.log(dateSample(Infinity));
