@@ -14,21 +14,9 @@ const { NotImplementedError } = require('../extensions/index.js');
  * ]) => 3`
  *
  */
-function dateSample(sampleActivity) {
-
-    let k = 0.693 / HALF_LIFE_PERIOD;
-    const CORRECT_SYMBOLS = "0123456789.";
-
-    if (sampleActivity == undefined) return false;
-    if (sampleActivity == Infinity) return false;
-    if (typeof sampleActivity != "string") return false; // not a string
-    if ((typeof Number(sampleActivity) != 'number') || (String(Number(sampleActivity)) != sampleActivity)) {
-        return false
-    }
-    let numSampleActivity = Number(sampleActivity);
-    if (numSampleActivity > MODERN_ACTIVITY || numSampleActivity <= 0) { return false };
-
-    return Math.ceil(Math.log(MODERN_ACTIVITY / numSampleActivity) / k);
+function countCats( /* matrix */ ) {
+    throw new NotImplementedError('Not implemented');
+    // remove line with error and write your code here
 }
 
 module.exports = {
