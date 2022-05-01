@@ -1,4 +1,4 @@
-import { NotImplementedError } from '../extensions/index.js';
+const { NotImplementedError } = require('../extensions/index.js');
 
 /**
  * Given matrix where you have to find cats by ears "^^"
@@ -14,13 +14,23 @@ import { NotImplementedError } from '../extensions/index.js';
  * ]) => 3`
  *
  */
-export default function countCats(matrix) {
-  let sum=0;
-  matrix.forEach(function (RowOfYard) {
-    RowOfYard.forEach(function (cell) {
-      if (cell == '^^') sum++;
-    });
-  });
+function dateSample(sampleActivity) {
 
-  return sum;
+    let k = 0.693 / HALF_LIFE_PERIOD;
+    const CORRECT_SYMBOLS = "0123456789.";
+
+    if (sampleActivity == undefined) return false;
+    if (sampleActivity == Infinity) return false;
+    if (typeof sampleActivity != "string") return false; // not a string
+    if ((typeof Number(sampleActivity) != 'number') || (String(Number(sampleActivity)) != sampleActivity)) {
+        return false
+    }
+    let numSampleActivity = Number(sampleActivity);
+    if (numSampleActivity > MODERN_ACTIVITY || numSampleActivity <= 0) { return false };
+
+    return Math.ceil(Math.log(MODERN_ACTIVITY / numSampleActivity) / k);
 }
+
+module.exports = {
+    countCats
+};
