@@ -19,20 +19,20 @@ function getSeason(date) {
         return errorUnableDeterminate;
     }
     if (typeof date != "object") {
-        throw Error(errorInvalidDate);
+        throw new Error(errorInvalidDate);
     }
-    if (date.constructor.name != "Date") {
-        throw Error(errorInvalidDate);
-    } else {
-        if ([0, 1, 11].indexOf(date.getMonth()) != -1) {
-            return seasons[0];
-        } else if (date.getMonth() <= 4) {
-            return seasons[1];
-        } else if (date.getMonth() <= 7) {
-            return seasons[2];
-        } else if (date.getMonth() <= 10) {
-            return seasons[3];
-        }
+    if (Object.keys(date).length > 0) {
+        throw new Error(errorInvalidDate);
+    }
+
+    if ([0, 1, 11].indexOf(date.getMonth()) != -1) {
+        return seasons[0];
+    } else if (date.getMonth() <= 4) {
+        return seasons[1];
+    } else if (date.getMonth() <= 7) {
+        return seasons[2];
+    } else if (date.getMonth() <= 10) {
+        return seasons[3];
     }
 }
 
